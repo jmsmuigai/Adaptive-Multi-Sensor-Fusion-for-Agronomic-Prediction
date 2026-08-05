@@ -1,0 +1,43 @@
+{
+ "environment": {
+  "platform": "Linux-6.8.0-124-generic-aarch64-with-glibc2.35",
+  "python": "3.10.12",
+  "numpy": "2.2.6",
+  "n": 1302,
+  "bands": 437,
+  "reps": 30,
+  "mem_kB": 3997928
+ },
+ "models": {
+  "PLSR": {
+   "fit_s": 0.02,
+   "ms_mean": 0.0002,
+   "ms_p95": 0.0003,
+   "per_sec": 4114284
+  },
+  "Ridge": {
+   "fit_s": 0.02,
+   "ms_mean": 0.0002,
+   "ms_p95": 0.0002,
+   "per_sec": 5867545
+  },
+  "GradientBoosting": {
+   "fit_s": 2.64,
+   "ms_mean": 0.0354,
+   "ms_p95": 0.0388,
+   "per_sec": 28222
+  },
+  "MLP": {
+   "fit_s": 1.78,
+   "ms_mean": 0.0015,
+   "ms_p95": 0.0016,
+   "per_sec": 686922
+  },
+  "DualDAFM": {
+   "fit_s": 20.87,
+   "ms_mean": 0.0785,
+   "ms_p95": 0.0875,
+   "per_sec": 12739
+  }
+ }
+}

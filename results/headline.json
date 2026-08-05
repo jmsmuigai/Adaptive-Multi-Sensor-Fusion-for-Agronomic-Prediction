@@ -1,0 +1,134 @@
+{
+ "cluster": {
+  "mean_R2": {
+   "PLSR": 0.5049,
+   "Ridge": 0.6849,
+   "RandomForest": 0.6953,
+   "GradientBoosting": 0.7319,
+   "MLP": 0.7491,
+   "DualDAFM": 0.6359
+  },
+  "median_R2": {
+   "PLSR": 0.6673,
+   "Ridge": 0.7733,
+   "RandomForest": 0.7911,
+   "GradientBoosting": 0.8098,
+   "MLP": 0.8113,
+   "DualDAFM": 0.7604
+  },
+  "mean_rank": {
+   "PLSR": 5.385,
+   "Ridge": 3.154,
+   "RandomForest": 3.615,
+   "GradientBoosting": 2.462,
+   "MLP": 1.462,
+   "DualDAFM": 4.923
+  },
+  "n_positive": {
+   "PLSR": 12,
+   "Ridge": 13,
+   "RandomForest": 13,
+   "GradientBoosting": 13,
+   "MLP": 13,
+   "DualDAFM": 13
+  },
+  "worst_R2": {
+   "PLSR": -0.848,
+   "Ridge": 0.208,
+   "RandomForest": 0.317,
+   "GradientBoosting": 0.41,
+   "MLP": 0.428,
+   "DualDAFM": 0.125
+  },
+  "n_targets": 13,
+  "best_by_mean_rank": "MLP"
+ },
+ "site": {
+  "mean_R2": {
+   "PLSR": -0.1352,
+   "Ridge": -0.0257,
+   "RandomForest": 0.3038,
+   "GradientBoosting": 0.3507,
+   "MLP": -1.7914,
+   "DualDAFM": 0.2468
+  },
+  "median_R2": {
+   "PLSR": -0.0171,
+   "Ridge": 0.0487,
+   "RandomForest": 0.3173,
+   "GradientBoosting": 0.2924,
+   "MLP": 0.0747,
+   "DualDAFM": 0.2011
+  },
+  "mean_rank": {
+   "PLSR": 5.308,
+   "Ridge": 3.385,
+   "RandomForest": 2.615,
+   "GradientBoosting": 2.308,
+   "MLP": 4.0,
+   "DualDAFM": 3.385
+  },
+  "n_positive": {
+   "PLSR": 6,
+   "Ridge": 9,
+   "RandomForest": 12,
+   "GradientBoosting": 11,
+   "MLP": 7,
+   "DualDAFM": 11
+  },
+  "worst_R2": {
+   "PLSR": -2.102,
+   "Ridge": -1.637,
+   "RandomForest": -0.468,
+   "GradientBoosting": -0.041,
+   "MLP": -24.146,
+   "DualDAFM": -0.425
+  },
+  "n_targets": 13,
+  "best_by_mean_rank": "GradientBoosting"
+ },
+ "country": {
+  "mean_R2": {
+   "PLSR": -0.4898,
+   "Ridge": 0.042,
+   "RandomForest": 0.1714,
+   "GradientBoosting": 0.2046,
+   "MLP": 0.1792,
+   "DualDAFM": 0.1259
+  },
+  "median_R2": {
+   "PLSR": 0.0083,
+   "Ridge": 0.0936,
+   "RandomForest": 0.2621,
+   "GradientBoosting": 0.277,
+   "MLP": 0.2329,
+   "DualDAFM": 0.2004
+  },
+  "mean_rank": {
+   "PLSR": 4.538,
+   "Ridge": 3.923,
+   "RandomForest": 3.385,
+   "GradientBoosting": 2.692,
+   "MLP": 2.846,
+   "DualDAFM": 3.615
+  },
+  "n_positive": {
+   "PLSR": 7,
+   "Ridge": 8,
+   "RandomForest": 9,
+   "GradientBoosting": 8,
+   "MLP": 10,
+   "DualDAFM": 10
+  },
+  "worst_R2": {
+   "PLSR": -2.55,
+   "Ridge": -1.103,
+   "RandomForest": -0.334,
+   "GradientBoosting": -0.549,
+   "MLP": -0.51,
+   "DualDAFM": -0.564
+  },
+  "n_targets": 13,
+  "best_by_mean_rank": "GradientBoosting"
+ }
+}

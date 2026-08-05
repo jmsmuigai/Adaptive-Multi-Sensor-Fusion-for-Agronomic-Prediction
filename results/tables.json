@@ -1,0 +1,1105 @@
+{
+ "table1": {
+  "caption": "Table 1: Composition of the analysis set. Samples are AfSIS Land Degradation Surveillance Framework records with paired mid-infrared spectra and wet chemistry, collected 2009-2013 at two depths ({'Topsoil': 659, 'Subsoil': 651}). Spectra cover 1749 wavenumbers from 601.7 to 4001.6 cm-1. The spectra and chemistry deposits joined with zero attrition.",
+  "rows": [
+   [
+    "Country",
+    "Samples",
+    "Sentinel sites",
+    "LDSF clusters",
+    "Latitude range",
+    "Longitude range"
+   ],
+   [
+    "Kenya",
+    "340",
+    "3",
+    "45",
+    "-2.67 to -0.09",
+    "35.57 to 39.59"
+   ],
+   [
+    "Ethiopia",
+    "381",
+    "4",
+    "63",
+    "4.14 to 11.33",
+    "34.98 to 42.74"
+   ],
+   [
+    "Tanzania",
+    "367",
+    "7",
+    "67",
+    "-11.11 to -3.01",
+    "33.05 to 37.51"
+   ],
+   [
+    "Uganda",
+    "222",
+    "2",
+    "32",
+    "0.49 to 1.53",
+    "31.46 to 32.34"
+   ],
+   [
+    "Total",
+    "1310",
+    "16",
+    "207",
+    "\u2014",
+    "\u2014"
+   ]
+  ]
+ },
+ "table2": {
+  "caption": "Table 2: Soil properties modelled, with their source columns in the wet-chemistry deposit. Properties with skew above 2.0 were log-transformed for fitting; all reported errors are back-transformed to these units.",
+  "rows": [
+   [
+    "Property",
+    "Source column",
+    "Unit",
+    "n present",
+    "Median",
+    "Skew"
+   ],
+   [
+    "pH",
+    "pH",
+    "-",
+    "1300",
+    "6.6",
+    "0.06"
+   ],
+   [
+    "Organic C (%)",
+    "Percent_Org_C",
+    "% w/w",
+    "1307",
+    "1.18",
+    "3.35"
+   ],
+   [
+    "Total N (%)",
+    "Percent_N",
+    "% w/w",
+    "1302",
+    "0.09",
+    "3.23"
+   ],
+   [
+    "Olsen P",
+    "Olsen.P",
+    "mg/kg",
+    "1310",
+    "2.93",
+    "10.00"
+   ],
+   [
+    "Exch. Ca",
+    "Caex",
+    "cmolc/kg",
+    "1310",
+    "10.72",
+    "0.99"
+   ],
+   [
+    "Exch. Mg",
+    "Mgex",
+    "cmolc/kg",
+    "1310",
+    "2.936",
+    "1.80"
+   ],
+   [
+    "Exch. K",
+    "Kex",
+    "cmolc/kg",
+    "1310",
+    "0.4531",
+    "5.39"
+   ],
+   [
+    "eCEC",
+    "eCEC",
+    "cmolc/kg",
+    "1310",
+    "16.63",
+    "0.73"
+   ],
+   [
+    "Total S",
+    "S",
+    "mg/kg",
+    "1310",
+    "123.6",
+    "13.87"
+   ],
+   [
+    "Total Fe",
+    "Fe",
+    "mg/kg",
+    "1310",
+    "2.851e+04",
+    "2.52"
+   ],
+   [
+    "Total Mn",
+    "Mn",
+    "mg/kg",
+    "1310",
+    "785.8",
+    "2.95"
+   ],
+   [
+    "Total Zn",
+    "Zn",
+    "mg/kg",
+    "1310",
+    "32.63",
+    "1.55"
+   ],
+   [
+    "Total Cu",
+    "Cu",
+    "mg/kg",
+    "1310",
+    "12.68",
+    "2.64"
+   ]
+  ]
+ },
+ "table3": {
+  "caption": "Table 3: Leave-cluster-out cross-validation. R\u00b2 is the mean of four evaluation folds; the confidence interval is t-based across folds. RMSE and MAE are in the measurement units of each property. RF = random forest, GBM = gradient boosting, Hybrid = the proposed CNN\u2013DAFM\u2013RBF architecture.",
+  "rows": [
+   [
+    "Property",
+    "PLSR",
+    "Ridge",
+    "RF",
+    "GBM",
+    "MLP",
+    "Hybrid",
+    "Best model",
+    "Best R\u00b2 (95% CI)",
+    "RMSE",
+    "MAE"
+   ],
+   [
+    "Total N (%)",
+    "0.877",
+    "0.935",
+    "0.893",
+    "0.886",
+    "0.939",
+    "0.824",
+    "MLP",
+    "0.939 (0.924\u20130.954)",
+    "0.03059",
+    "0.02013"
+   ],
+   [
+    "eCEC",
+    "0.841",
+    "0.900",
+    "0.880",
+    "0.893",
+    "0.906",
+    "0.866",
+    "MLP",
+    "0.906 (0.847\u20130.966)",
+    "4.809",
+    "3.401"
+   ],
+   [
+    "pH",
+    "0.854",
+    "0.885",
+    "0.876",
+    "0.901",
+    "0.916",
+    "0.818",
+    "MLP",
+    "0.916 (0.884\u20130.949)",
+    "0.3064",
+    "0.2325"
+   ],
+   [
+    "Total Fe",
+    "0.779",
+    "0.898",
+    "0.856",
+    "0.895",
+    "0.915",
+    "0.818",
+    "MLP",
+    "0.915 (0.878\u20130.952)",
+    "9739",
+    "5370"
+   ],
+   [
+    "Exch. Ca",
+    "0.797",
+    "0.881",
+    "0.839",
+    "0.875",
+    "0.900",
+    "0.808",
+    "MLP",
+    "0.900 (0.825\u20130.975)",
+    "3.412",
+    "2.233"
+   ],
+   [
+    "Organic C (%)",
+    "0.876",
+    "0.877",
+    "0.837",
+    "0.852",
+    "0.897",
+    "0.699",
+    "MLP",
+    "0.897 (0.862\u20130.933)",
+    "0.5538",
+    "0.2831"
+   ],
+   [
+    "Exch. Mg",
+    "0.667",
+    "0.773",
+    "0.772",
+    "0.791",
+    "0.811",
+    "0.760",
+    "MLP",
+    "0.811 (0.737\u20130.886)",
+    "1.619",
+    "1.061"
+   ],
+   [
+    "Total Zn",
+    "0.620",
+    "0.723",
+    "0.791",
+    "0.810",
+    "0.797",
+    "0.786",
+    "GBM",
+    "0.810 (0.702\u20130.918)",
+    "14.82",
+    "9.174"
+   ],
+   [
+    "Total Cu",
+    "0.542",
+    "0.510",
+    "0.572",
+    "0.625",
+    "0.713",
+    "0.518",
+    "MLP",
+    "0.713 (0.620\u20130.806)",
+    "6.943",
+    "4.105"
+   ],
+   [
+    "Total Mn",
+    "0.354",
+    "0.208",
+    "0.596",
+    "0.626",
+    "0.497",
+    "0.541",
+    "GBM",
+    "0.626 (0.520\u20130.732)",
+    "496.8",
+    "271.9"
+   ],
+   [
+    "Exch. K",
+    "0.149",
+    "0.414",
+    "0.366",
+    "0.410",
+    "0.504",
+    "0.328",
+    "MLP",
+    "0.504 (0.173\u20130.835)",
+    "0.6663",
+    "0.3448"
+   ],
+   [
+    "Olsen P",
+    "0.055",
+    "0.562",
+    "0.317",
+    "0.501",
+    "0.428",
+    "0.125",
+    "Ridge",
+    "0.562 (0.217\u20130.907)",
+    "16.27",
+    "5.364"
+   ],
+   [
+    "Total S",
+    "-0.848",
+    "0.338",
+    "0.444",
+    "0.450",
+    "0.513",
+    "0.377",
+    "MLP",
+    "0.513 (-0.029\u20131.054)",
+    "193.3",
+    "57.57"
+   ],
+   [
+    "Mean",
+    "0.505",
+    "0.685",
+    "0.695",
+    "0.732",
+    "0.749",
+    "0.636",
+    "\u2014",
+    "\u2014",
+    "\u2014",
+    "\u2014"
+   ]
+  ]
+ },
+ "table5": {
+  "caption": "Table 5: Leave-site-out cross-validation \u2014 transfer to an unsampled 10 x 10 km landscape. Lower mean rank is better.",
+  "rows": [
+   [
+    "Property",
+    "PLSR",
+    "Ridge",
+    "RF",
+    "GBM",
+    "MLP",
+    "Hybrid"
+   ],
+   [
+    "Total N (%)",
+    "0.403",
+    "0.486",
+    "0.647",
+    "0.670",
+    "0.646",
+    "0.570"
+   ],
+   [
+    "eCEC",
+    "0.502",
+    "0.665",
+    "0.553",
+    "0.631",
+    "0.434",
+    "0.588"
+   ],
+   [
+    "pH",
+    "-0.261",
+    "-0.127",
+    "0.292",
+    "0.292",
+    "0.156",
+    "-0.425"
+   ],
+   [
+    "Total Fe",
+    "0.283",
+    "-1.386",
+    "0.556",
+    "0.639",
+    "-24.146",
+    "0.533"
+   ],
+   [
+    "Exch. Ca",
+    "0.414",
+    "0.526",
+    "0.461",
+    "0.550",
+    "0.517",
+    "0.473"
+   ],
+   [
+    "Organic C (%)",
+    "0.500",
+    "0.814",
+    "0.671",
+    "0.673",
+    "0.783",
+    "0.421"
+   ],
+   [
+    "Exch. Mg",
+    "-2.102",
+    "-0.078",
+    "-0.468",
+    "-0.041",
+    "-0.001",
+    "0.199"
+   ],
+   [
+    "Total Zn",
+    "0.103",
+    "0.049",
+    "0.431",
+    "0.422",
+    "0.161",
+    "0.171"
+   ],
+   [
+    "Total Cu",
+    "-0.113",
+    "0.036",
+    "0.172",
+    "0.158",
+    "-0.192",
+    "0.303"
+   ],
+   [
+    "Total Mn",
+    "-0.986",
+    "-1.637",
+    "0.244",
+    "0.238",
+    "-0.020",
+    "0.108"
+   ],
+   [
+    "Exch. K",
+    "-0.344",
+    "0.137",
+    "0.063",
+    "0.061",
+    "0.075",
+    "0.093"
+   ],
+   [
+    "Olsen P",
+    "-0.138",
+    "0.032",
+    "0.009",
+    "-0.002",
+    "-0.024",
+    "-0.027"
+   ],
+   [
+    "Total S",
+    "-0.017",
+    "0.147",
+    "0.317",
+    "0.267",
+    "-1.675",
+    "0.201"
+   ],
+   [
+    "Mean R\u00b2",
+    "-0.135",
+    "-0.026",
+    "0.304",
+    "0.351",
+    "-1.791",
+    "0.247"
+   ],
+   [
+    "Mean rank",
+    "5.31",
+    "3.38",
+    "2.62",
+    "2.31",
+    "4.00",
+    "3.38"
+   ],
+   [
+    "Properties with R\u00b2 > 0",
+    "6",
+    "9",
+    "12",
+    "11",
+    "7",
+    "11"
+   ],
+   [
+    "Worst-case R\u00b2",
+    "-2.10",
+    "-1.64",
+    "-0.47",
+    "-0.04",
+    "-24.15",
+    "-0.42"
+   ]
+  ]
+ },
+ "table4": {
+  "caption": "Table 4: Performance across the three nested validation designs. Cluster = leave-cluster-out (5 folds), Site = leave-site-out (8 folds), Country = leave-country-out (4 folds). Rank is the mean rank across the thirteen properties, where 1 is best; n>0 counts properties retaining positive R\u00b2.",
+  "rows": [
+   [
+    "Model",
+    "Cluster mean R\u00b2",
+    "Site mean R\u00b2",
+    "Country mean R\u00b2",
+    "Cluster rank",
+    "Site rank",
+    "Country rank",
+    "Cluster n>0",
+    "Site n>0",
+    "Country n>0"
+   ],
+   [
+    "PLSR",
+    "0.505",
+    "-0.135",
+    "-0.490",
+    "5.38",
+    "5.31",
+    "4.54",
+    "12",
+    "6",
+    "7"
+   ],
+   [
+    "Ridge",
+    "0.685",
+    "-0.026",
+    "0.042",
+    "3.15",
+    "3.38",
+    "3.92",
+    "13",
+    "9",
+    "8"
+   ],
+   [
+    "RF",
+    "0.695",
+    "0.304",
+    "0.171",
+    "3.62",
+    "2.62",
+    "3.38",
+    "13",
+    "12",
+    "9"
+   ],
+   [
+    "GBM",
+    "0.732",
+    "0.351",
+    "0.205",
+    "2.46",
+    "2.31",
+    "2.69",
+    "13",
+    "11",
+    "8"
+   ],
+   [
+    "MLP",
+    "0.749",
+    "-1.791",
+    "0.179",
+    "1.46",
+    "4.00",
+    "2.85",
+    "13",
+    "7",
+    "10"
+   ],
+   [
+    "Hybrid",
+    "0.636",
+    "0.247",
+    "0.126",
+    "4.92",
+    "3.38",
+    "3.62",
+    "13",
+    "11",
+    "10"
+   ]
+  ]
+ },
+ "table6": {
+  "caption": "Table 6: Effect of calibration breadth. Both columns use identical models, preprocessing, tuning budget and validation design; only the geographic base of the calibration differs.",
+  "rows": [
+   [
+    "Metric",
+    "Kenya only (3 sites, n=340)",
+    "Four countries (16 sites, n=1,310)"
+   ],
+   [
+    "Best mean R\u00b2, leave-site-out",
+    "-0.651",
+    "0.351"
+   ],
+   [
+    "Properties with R\u00b2 > 0 (best model)",
+    "6 of 13",
+    "12 of 13"
+   ],
+   [
+    "Best R\u00b2 within landscape, Olsen P",
+    "0.164",
+    "0.562"
+   ],
+   [
+    "Best R\u00b2 within landscape, Total N (%)",
+    "0.889",
+    "0.939"
+   ],
+   [
+    "Best R\u00b2 within landscape, pH",
+    "0.848",
+    "0.916"
+   ],
+   [
+    "Best R\u00b2 within landscape, Exch. K",
+    "0.423",
+    "0.504"
+   ],
+   [
+    "Best R\u00b2 within landscape, Total S",
+    "0.327",
+    "0.513"
+   ]
+  ]
+ },
+ "table7": {
+  "caption": "Table 7: Agronomic status of the topsoil (0-20 cm) samples against indicative critical levels, with sensitivity to the threshold, alongside the best R\u00b2 achieved under leave-cluster-out validation.",
+  "rows": [
+   [
+    "Property",
+    "Critical level",
+    "Basis",
+    "% below",
+    "% at \u00bd\u00d7",
+    "% at 1\u00bd\u00d7",
+    "Median",
+    "Best R\u00b2"
+   ],
+   [
+    "Olsen P",
+    "15",
+    "Olsen-extractable P, mg/kg",
+    "84.4",
+    "69.2",
+    "89.4",
+    "4.82",
+    "0.562"
+   ],
+   [
+    "Total Cu",
+    "20",
+    "total Cu, mg/kg",
+    "71.3",
+    "40.5",
+    "90.0",
+    "12.9",
+    "0.713"
+   ],
+   [
+    "Total N (%)",
+    "0.2",
+    "total N, % by weight",
+    "69.1",
+    "41.1",
+    "85.2",
+    "0.12",
+    "0.939"
+   ],
+   [
+    "Total Zn",
+    "50",
+    "total Zn, mg/kg",
+    "66.9",
+    "37.8",
+    "83.0",
+    "33.6",
+    "0.810"
+   ],
+   [
+    "Organic C (%)",
+    "2",
+    "organic C, % by weight",
+    "60.6",
+    "35.0",
+    "77.3",
+    "1.57",
+    "0.897"
+   ],
+   [
+    "Exch. K",
+    "0.2",
+    "exchangeable K, cmolc/kg",
+    "15.9",
+    "3.8",
+    "27.5",
+    "0.577",
+    "0.504"
+   ],
+   [
+    "eCEC",
+    "5",
+    "effective CEC, cmolc/kg",
+    "14.6",
+    "7.9",
+    "24.7",
+    "17.3",
+    "0.906"
+   ],
+   [
+    "Exch. Ca",
+    "2",
+    "exchangeable Ca, cmolc/kg",
+    "8.5",
+    "2.4",
+    "16.4",
+    "11.8",
+    "0.900"
+   ],
+   [
+    "pH",
+    "5.5",
+    "below this, Al toxicity risk rises",
+    "7.9",
+    "0.0",
+    "90.1",
+    "6.66",
+    "0.916"
+   ],
+   [
+    "Exch. Mg",
+    "0.5",
+    "exchangeable Mg, cmolc/kg",
+    "7.1",
+    "1.7",
+    "12.7",
+    "2.93",
+    "0.811"
+   ]
+  ]
+ },
+ "table8": {
+  "caption": "Table 8: Learned branch-gate weights, mean \u00b1 SD across evaluation folds. These are measured quantities, not assumptions, and show that the balance between modalities is learned separately for each property.",
+  "rows": [
+   [
+    "Property",
+    "Spectral branch weight",
+    "Ancillary branch weight"
+   ],
+   [
+    "Total N (%)",
+    "0.592 \u00b1 0.108",
+    "0.408"
+   ],
+   [
+    "Organic C (%)",
+    "0.555 \u00b1 0.149",
+    "0.445"
+   ],
+   [
+    "pH",
+    "0.415 \u00b1 0.089",
+    "0.585"
+   ],
+   [
+    "Exch. Ca",
+    "0.350 \u00b1 0.161",
+    "0.650"
+   ]
+  ]
+ },
+ "table9": {
+  "caption": "Table 9: Leave-country-out cross-validation by property. Each fold withholds one national dataset in full. This is the most demanding design tested and corresponds to exporting a calibration across a national border.",
+  "rows": [
+   [
+    "Property",
+    "PLSR",
+    "Ridge",
+    "RF",
+    "GBM",
+    "MLP",
+    "Hybrid"
+   ],
+   [
+    "Organic C (%)",
+    "0.620",
+    "0.677",
+    "0.638",
+    "0.678",
+    "0.738",
+    "0.345"
+   ],
+   [
+    "Total N (%)",
+    "0.291",
+    "0.451",
+    "0.625",
+    "0.578",
+    "0.577",
+    "0.350"
+   ],
+   [
+    "pH",
+    "0.416",
+    "0.349",
+    "0.308",
+    "0.358",
+    "0.610",
+    "0.200"
+   ],
+   [
+    "Total Fe",
+    "0.235",
+    "0.706",
+    "0.415",
+    "0.492",
+    "0.091",
+    "0.284"
+   ],
+   [
+    "Total S",
+    "0.327",
+    "0.389",
+    "0.262",
+    "0.277",
+    "0.243",
+    "-0.025"
+   ],
+   [
+    "Exch. Ca",
+    "-0.001",
+    "-0.108",
+    "0.293",
+    "0.456",
+    "0.438",
+    "0.334"
+   ],
+   [
+    "eCEC",
+    "-0.491",
+    "0.248",
+    "0.392",
+    "0.493",
+    "0.350",
+    "0.414"
+   ],
+   [
+    "Total Cu",
+    "0.224",
+    "0.094",
+    "-0.141",
+    "-0.100",
+    "0.233",
+    "0.126"
+   ],
+   [
+    "Total Mn",
+    "0.008",
+    "-0.118",
+    "-0.094",
+    "-0.028",
+    "0.070",
+    "-0.564"
+   ],
+   [
+    "Exch. Mg",
+    "-1.491",
+    "-0.462",
+    "0.051",
+    "0.227",
+    "-0.233",
+    "0.294"
+   ],
+   [
+    "Exch. K",
+    "-1.444",
+    "0.063",
+    "-0.334",
+    "-0.217",
+    "0.071",
+    "0.141"
+   ],
+   [
+    "Olsen P",
+    "-2.550",
+    "-0.641",
+    "0.086",
+    "-0.007",
+    "-0.346",
+    "0.037"
+   ],
+   [
+    "Total Zn",
+    "-2.512",
+    "-1.103",
+    "-0.274",
+    "-0.549",
+    "-0.510",
+    "-0.300"
+   ],
+   [
+    "Mean",
+    "-0.490",
+    "0.042",
+    "0.171",
+    "0.205",
+    "0.179",
+    "0.126"
+   ]
+  ]
+ },
+ "table10": {
+  "caption": "Table 10: Performance when each country is withheld in turn, averaged over the thirteen properties. Ethiopia served as the hyperparameter-selection fold and is therefore not reported as a test country.",
+  "rows": [
+   [
+    "Held-out country",
+    "PLSR",
+    "Ridge",
+    "RF",
+    "GBM",
+    "MLP",
+    "Hybrid",
+    "Best model",
+    "Best mean R\u00b2",
+    "Properties R\u00b2 > 0"
+   ],
+   [
+    "Kenya",
+    "-0.077",
+    "0.188",
+    "0.061",
+    "0.120",
+    "0.068",
+    "0.240",
+    "Hybrid",
+    "0.240",
+    "9 of 13"
+   ],
+   [
+    "Tanzania",
+    "-0.786",
+    "-0.152",
+    "0.322",
+    "0.350",
+    "0.277",
+    "0.100",
+    "GBM",
+    "0.350",
+    "10 of 13"
+   ],
+   [
+    "Uganda",
+    "-0.606",
+    "0.089",
+    "0.131",
+    "0.144",
+    "0.193",
+    "0.037",
+    "MLP",
+    "0.193",
+    "10 of 13"
+   ]
+  ]
+ },
+ "table_bound": {
+  "caption": "Table 6: Worst-case single-property R\u00b2 under the two transfer designs, set against whether each model's output is bounded by construction. Models with bounded output occupy the three least severe positions and models with unbounded output the three most severe, as Proposition 2 (Section 2.4.5) predicts.",
+  "rows": [
+   [
+    "Model",
+    "Output range",
+    "Worst R\u00b2 (leave-site-out)",
+    "Worst R\u00b2 (leave-country-out)"
+   ],
+   [
+    "MLP",
+    "Unbounded (linear output layer)",
+    "-24.15",
+    "-0.51"
+   ],
+   [
+    "PLSR",
+    "Unbounded (linear projection)",
+    "-2.10",
+    "-2.55"
+   ],
+   [
+    "Ridge",
+    "Unbounded (linear)",
+    "-1.64",
+    "-1.10"
+   ],
+   [
+    "RF",
+    "Bounded (convex combination of leaf values)",
+    "-0.47",
+    "-0.33"
+   ],
+   [
+    "Hybrid",
+    "Bounded: |y-b| <= ||W_o||_1  (Proposition 2)",
+    "-0.42",
+    "-0.56"
+   ],
+   [
+    "GBM",
+    "Bounded (sum of bounded leaf values)",
+    "-0.04",
+    "-0.55"
+   ]
+  ]
+ },
+ "table_timing": {
+  "caption": "Table 9: Measured computational cost on the assembled dataset (1,302 samples, 437 preprocessed bands). Environment: Linux-6.8.0-124-generic-aarch64-with-glibc2.35, 3.0 GiB RAM, Python 3.10.12, NumPy 2.2.6, single BLAS thread. Inference timed over 30 repetitions after a warm-up pass. Figures cover model inference only and exclude sample preparation and spectrometer acquisition.",
+  "rows": [
+   [
+    "Model",
+    "Training time (s)",
+    "Inference (ms/sample)",
+    "p95 (ms/sample)",
+    "Throughput (samples/s)"
+   ],
+   [
+    "PLSR",
+    "0.02",
+    "0.0002",
+    "0.0003",
+    "4,114,284"
+   ],
+   [
+    "Ridge",
+    "0.02",
+    "0.0002",
+    "0.0002",
+    "5,867,545"
+   ],
+   [
+    "GBM",
+    "2.64",
+    "0.0354",
+    "0.0388",
+    "28,222"
+   ],
+   [
+    "MLP",
+    "1.78",
+    "0.0015",
+    "0.0016",
+    "686,922"
+   ],
+   [
+    "Hybrid",
+    "20.87",
+    "0.0785",
+    "0.0875",
+    "12,739"
+   ]
+  ]
+ }
+}

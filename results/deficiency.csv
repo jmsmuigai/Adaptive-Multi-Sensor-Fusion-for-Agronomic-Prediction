@@ -1,0 +1,11 @@
+target,critical,basis,n,pct_below,pct_below_half,pct_below_1p5,median
+P_Olsen,15.0,"Olsen-extractable P, mg/kg",659,84.4,69.2,89.4,4.82
+Cu_total,20.0,"total Cu, mg/kg",659,71.3,40.5,90.0,12.91
+TotN_pct,0.2,"total N, % by weight",654,69.1,41.1,85.2,0.12
+Zn_total,50.0,"total Zn, mg/kg",659,66.9,37.8,83.0,33.563
+OrgC_pct,2.0,"organic C, % by weight",657,60.6,35.0,77.3,1.57
+K_exch,0.2,"exchangeable K, cmolc/kg",659,15.9,3.8,27.5,0.577
+eCEC,5.0,"effective CEC, cmolc/kg",659,14.6,7.9,24.7,17.325
+Ca_exch,2.0,"exchangeable Ca, cmolc/kg",659,8.5,2.4,16.4,11.82
+pH,5.5,"below this, Al toxicity risk rises",656,7.9,0.0,90.1,6.655
+Mg_exch,0.5,"exchangeable Mg, cmolc/kg",659,7.1,1.7,12.7,2.926
