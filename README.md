@@ -6,7 +6,7 @@ Mburu, J. M., Ogada, K. and Kimwele, M.
 Department of Computing, School of Computing and Information Technology,
 Jomo Kenyatta University of Agriculture and Technology, Nairobi, Kenya
 
-Reproducibility package for the manuscript submitted to the *Journal of Agriculture, Science and Technology* (JAGST), Manuscript ID 1231.
+Reproducibility package for the manuscript submitted to the *Journal of Agriculture, Science and Technology* (JAGST), Manuscript ID 1231; resubmitted as ID 1283.
 
 ---
 
