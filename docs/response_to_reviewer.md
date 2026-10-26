@@ -30,13 +30,13 @@ Thank you for the opportunity to revise our manuscript, and thank you to the rev
 
 | No. | Reviewer request | What we did | Main result | Where |
 |---|---|---|---|---|
-| 1 | Local spiking, k = 0, 5, 10, 20, 50 | Added k samples from the held-out site to training under leave-site-out; profile partners of spiked samples excluded from the test set | Mean R² of kernel ridge regression rose from 0.512 (k = 0) to 0.658 (k = 50); Olsen P stayed near 0.06 | Section 3.6, Table 8, Fig. 8 |
+| 1 | Local spiking, k = 0, 5, 10, 20, 50 | Added k samples from the held-out site to training under leave-site-out; profile partners of spiked samples excluded from the test set | Mean R² of kernel ridge regression rose from 0.512 (k = 0) to 0.658 (k = 50), and all 13 properties improved; Olsen P stayed near 0.06 | Section 3.6, Table 8, Fig. 8 |
 | 2 | Learning curve over samples and sites | Crossed training size n = 100–800 with the number of training sites m = 2 to all, plus a like-for-like test on the Kenyan sites | At n = 200, R² rose from 0.04 (2 sites) to 0.47 (all sites); quadrupling n added only 0.06 | Section 3.5, Table 7, Fig. 7, Table S7 |
 | 3 | Ablation table | Nine single-component replacements of the hybrid under leave-site-out, all 13 properties | The RBF head and the gate gave no benefit; positional information and attention pooling were essential | Section 3.3, Table 5, Fig. 6 |
 | 4 | Direct boundedness test, ‖W~o~‖₁, log and original scales | Hybrid compared with an otherwise identical linear-head network; ‖w~o~‖₁ reported | Median ‖w~o~‖₁ = 5.49, a loose bound; worst-case R² similar on both scales | Section 3.4, Table 6 |
-| 5 | Group-bootstrap CIs and paired tests | 2,000-draw group bootstrap over spatial units; paired tests for all model pairs; Friedman and Nemenyi tests | GPR ranked first; eleven benchmarks were within the critical difference; only the hybrid fell outside it | Sections 2.8 and 3.2, Table 4, Table S3 |
+| 5 | Group-bootstrap CIs and paired tests | 2,000-draw group bootstrap over spatial units; paired tests for all model pairs; Friedman and Nemenyi tests | GPR ranked first; 11 benchmarks were within the critical difference; only the hybrid fell outside it | Sections 2.8 and 3.2, Table 4, Table S3 |
 | 6 | 5–10 seeds for all neural models | Five seeds (11, 22, 33, 44, 55) for the MLP, CNN, multi-output CNN and hybrid in every fold | The hybrid had the largest seed variability (SD of R² 0.041) | Section 2.6 |
-| 7 | Leave-AEZ-out and group-aware conformal prediction | Five Köppen–Geiger zones withheld in turn; split-conformal intervals with a group-aware calibration set | Coverage of nominal 90% intervals 84.5% (site), 85.4% (AEZ) and 80.5% (country), against 71.7–78.5% with random calibration | Sections 2.1 and 3.7, Tables 3 and 9, Fig. 9 |
+| 7 | Leave-AEZ-out and group-aware conformal prediction | Five Köppen–Geiger zones withheld in turn; split-conformal intervals with a group-aware calibration set | Coverage of nominal 90% intervals 84.5% (site), 85.4% (AEZ) and 80.5% (country), against 71.7%–78.5% with random calibration | Sections 2.1 and 3.7, Tables 3 and 9, Fig. 9 |
 
 **Title and format**
 
@@ -132,7 +132,7 @@ The "order of magnitude" statement was removed. The breadth effect is compared w
 >
 > \- Against an otherwise identical linear-head network, worst-case R² was similar on both the original and the log scale, under leave-site-out, leave-AEZ-out and leave-country-out.
 >
-> \- The reviewer's explanation is confirmed. Without a range safeguard, five model–property combinations had R² below −1, all for total S, which is log-modelled and has skewness 13.9. They involved ridge, kernel and GP models and the MLP, and none involved the hybrid.
+> \- The reviewer's explanation is confirmed. Without a range safeguard, 5 model–property–design combinations had R² below −1, all for total S, which is log-modelled and has skewness 13.9. They involved GPR, kernel ridge regression, the MLP, ridge regression and SVR, and none involved the hybrid.
 >
 > \- Limiting back-transformed predictions to the training range removed these failures. This safeguard is applied identically to all models and is reported in Section 2.8.
 
@@ -198,7 +198,7 @@ A permutation test with circular shifts, which preserves autocorrelation, showed
 
 *No significance tests.*
 
-**Response:** Paired group-bootstrap tests for all model pairs, the Friedman test and the Nemenyi critical difference were added (Section 3.2). All eleven other benchmarks were within the critical difference of GPR; only the hybrid fell outside it. No conclusion rests on a single fold.
+**Response:** Paired group-bootstrap tests for all model pairs, the Friedman test and the Nemenyi critical difference were added (Section 3.2). All 11 other benchmarks were within the critical difference of GPR; only the hybrid fell outside it. No conclusion rests on a single fold.
 
 *Folds actually evaluated; Ethiopia never tested; state site grouping.*
 

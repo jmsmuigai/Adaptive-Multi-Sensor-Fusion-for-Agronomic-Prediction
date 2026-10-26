@@ -150,8 +150,8 @@ def main():
     for m in ['PLSR', 'KRR', 'LightGBM', 'Hybrid']:
         g = Sp[Sp.model == m]
         rows.append([MNAME.get(m, m), 'Mean of 13'] + [f(g[g.k == k].R2.mean()) for k in [0, 5, 10, 20, 50]])
-    for t in ['pH', 'OrgC_pct', 'K_exch', 'P_Olsen']:
-        g = Sp[(Sp.model == 'KRR') & (Sp.target == t)].set_index('k').R2
+    for t in ['pH', 'OrgC_pct', 'Fe_total', 'Cu_total', 'K_exch', 'P_Olsen']:
+        g = Sp[(Sp.model == 'KRR') & (Sp.target == t)].groupby('k').R2.mean()
         rows.append(['KRR', LABEL[t]] + [f(g.get(k, np.nan)) for k in [0, 5, 10, 20, 50]])
     save('T8', pd.DataFrame(rows, columns=['Model', 'Property', 'k = 0', 'k = 5', 'k = 10', 'k = 20', 'k = 50']))
     # Table 9 conformal

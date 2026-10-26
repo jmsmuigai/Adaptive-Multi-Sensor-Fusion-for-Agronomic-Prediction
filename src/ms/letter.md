@@ -30,13 +30,13 @@ Thank you for the opportunity to revise our manuscript, and thank you to the rev
 
 | No. | Reviewer request | What we did | Main result | Where |
 |---|---|---|---|---|
-| 1 | Local spiking, k = 0, 5, 10, 20, 50 | Added k samples from the held-out site to training under leave-site-out; profile partners of spiked samples excluded from the test set | Mean R² of kernel ridge regression rose from 0.512 (k = 0) to 0.658 (k = 50); Olsen P stayed near 0.06 | Section 3.6, Table 8, Fig. 8 |
-| 2 | Learning curve over samples and sites | Crossed training size n = 100–800 with the number of training sites m = 2 to all, plus a like-for-like test on the Kenyan sites | At n = 200, R² rose from 0.04 (2 sites) to 0.47 (all sites); quadrupling n added only 0.06 | Section 3.5, Table 7, Fig. 7, Table S7 |
+| 1 | Local spiking, k = 0, 5, 10, 20, 50 | Added k samples from the held-out site to training under leave-site-out; profile partners of spiked samples excluded from the test set | Mean R² of kernel ridge regression rose from [[sp_KRR_0:.3f]] (k = 0) to [[sp_KRR_50:.3f]] (k = 50), and all [[sp_KRR_nimp50]] properties improved; Olsen P stayed near [[sp_KRR_P_Olsen_50:.2f]] | Section 3.6, Table 8, Fig. 8 |
+| 2 | Learning curve over samples and sites | Crossed training size n = 100–800 with the number of training sites m = 2 to all, plus a like-for-like test on the Kenyan sites | At n = 200, R² rose from [[lc_KRR_2_200:.2f]] (2 sites) to [[lc_KRR_all_200:.2f]] (all sites); quadrupling n added only [[lc_gain_800:.2f]] | Section 3.5, Table 7, Fig. 7, Table S7 |
 | 3 | Ablation table | Nine single-component replacements of the hybrid under leave-site-out, all 13 properties | The RBF head and the gate gave no benefit; positional information and attention pooling were essential | Section 3.3, Table 5, Fig. 6 |
-| 4 | Direct boundedness test, ‖W~o~‖₁, log and original scales | Hybrid compared with an otherwise identical linear-head network; ‖w~o~‖₁ reported | Median ‖w~o~‖₁ = 5.49, a loose bound; worst-case R² similar on both scales | Section 3.4, Table 6 |
-| 5 | Group-bootstrap CIs and paired tests | 2,000-draw group bootstrap over spatial units; paired tests for all model pairs; Friedman and Nemenyi tests | GPR ranked first; eleven benchmarks were within the critical difference; only the hybrid fell outside it | Sections 2.8 and 3.2, Table 4, Table S3 |
-| 6 | 5–10 seeds for all neural models | Five seeds (11, 22, 33, 44, 55) for the MLP, CNN, multi-output CNN and hybrid in every fold | The hybrid had the largest seed variability (SD of R² 0.041) | Section 2.6 |
-| 7 | Leave-AEZ-out and group-aware conformal prediction | Five Köppen–Geiger zones withheld in turn; split-conformal intervals with a group-aware calibration set | Coverage of nominal 90% intervals 84.5% (site), 85.4% (AEZ) and 80.5% (country), against 71.7–78.5% with random calibration | Sections 2.1 and 3.7, Tables 3 and 9, Fig. 9 |
+| 4 | Direct boundedness test, ‖W~o~‖₁, log and original scales | Hybrid compared with an otherwise identical linear-head network; ‖w~o~‖₁ reported | Median ‖w~o~‖₁ = [[wo_l1_median:.2f]], a loose bound; worst-case R² similar on both scales | Section 3.4, Table 6 |
+| 5 | Group-bootstrap CIs and paired tests | 2,000-draw group bootstrap over spatial units; paired tests for all model pairs; Friedman and Nemenyi tests | GPR ranked first; [[n_within_cd_site_m1]] benchmarks were within the critical difference; only the hybrid fell outside it | Sections 2.8 and 3.2, Table 4, Table S3 |
+| 6 | 5–10 seeds for all neural models | Five seeds (11, 22, 33, 44, 55) for the MLP, CNN, multi-output CNN and hybrid in every fold | The hybrid had the largest seed variability (SD of R² [[seed_sd_hyb_site:.3f]]) | Section 2.6 |
+| 7 | Leave-AEZ-out and group-aware conformal prediction | Five Köppen–Geiger zones withheld in turn; split-conformal intervals with a group-aware calibration set | Coverage of nominal 90% intervals [[cf_site_group_mean:.1%]] (site), [[cf_aez_group_mean:.1%]] (AEZ) and [[cf_country_group_mean:.1%]] (country), against [[cf_country_random_mean:.1%]]–[[cf_site_random_mean:.1%]] with random calibration | Sections 2.1 and 3.7, Tables 3 and 9, Fig. 9 |
 
 **Title and format**
 
@@ -74,15 +74,15 @@ Nested validation is now the centre of the paper and covers five designs: random
 
 **Response:** Done (Sections 2.9 and 3.3, Table 5, Fig. 6). Nine single-component replacements were run under leave-site-out with three seeds each (five for the linear head), over all 8 folds and 13 properties:
 
-> \- (a/e) Linear head: ΔR² = +0.015. Dense ReLU head: +0.016. Fixed-centre Gaussian head: −0.010. The RBF head therefore gives no benefit.
+> \- (a/e) Linear head: ΔR² = [[abl_head_linear:+.3f]]. Dense ReLU head: [[abl_head_mlp:+.3f]]. Fixed-centre Gaussian head: [[abl_head_gauss:+.3f]]. The RBF head therefore gives no benefit.
 >
-> \- (b) Mean pooling: −0.217, harming all 13 properties. Mean pooling was used as the comparator because, like attention, it pools over positions. Attention re-weighting followed by flattening gave +0.008, and removing the positional embedding gave −0.192.
+> \- (b) Mean pooling: [[abl_pool_mean:+.3f]], harming all 13 properties. Mean pooling was used as the comparator because, like attention, it pools over positions. Attention re-weighting followed by flattening gave [[abl_pool_reweight:+.3f]], and removing the positional embedding gave [[abl_no_pos:+.3f]].
 >
-> \- (c) Concatenation instead of the gate: +0.013. The gate therefore gives no benefit.
+> \- (c) Concatenation instead of the gate: [[abl_fuse_concat:+.3f]]. The gate therefore gives no benefit.
 >
-> \- (d) Spectra only: −0.039, with significant losses for 5 properties.
+> \- (d) Spectra only: [[abl_spectra_only:+.3f]], with significant losses for [[abl_spectra_only_nsigneg]] properties.
 >
-> \- Adding coordinates: −0.011.
+> \- Adding coordinates: [[abl_plus_coords:+.3f]].
 
 The manuscript states plainly that the architecture does not achieve its design objective (Sections 3.3 and 4.0).
 
@@ -96,7 +96,7 @@ The manuscript states plainly that the architecture does not achieve its design 
 
 *1.4 Single seed for neural nets.*
 
-**Response:** Every neural model (MLP, CNN, multi-output CNN and hybrid) was trained from **five random initialisations** in every fold of every design. Results are seed means with the seed standard deviation, and seed variability is carried into all bootstrap intervals (Section 2.6). The hybrid had the largest seed variability (mean SD of R² 0.041, against 0.028 for the CNN and 0.022 for the MLP).
+**Response:** Every neural model (MLP, CNN, multi-output CNN and hybrid) was trained from **five random initialisations** in every fold of every design. Results are seed means with the seed standard deviation, and seed variability is carried into all bootstrap intervals (Section 2.6). The hybrid had the largest seed variability (mean SD of R² [[seed_sd_hyb_site:.3f]], against [[seed_sd_cnn_site:.3f]] for the CNN and [[seed_sd_mlp_site:.3f]] for the MLP).
 
 *1.5 Weak tuning; equal budget is not equal fairness.*
 
@@ -108,7 +108,7 @@ The manuscript states plainly that the architecture does not achieve its design 
 
 *1.7 Self-implemented baselines. Use scikit-learn, LightGBM/XGBoost and PyTorch, and report agreement.*
 
-**Response:** All models now use maintained libraries: scikit-learn (PLSR, ridge, SVR, KRR, GPR, random forest), LightGBM, the cubist package, and PyTorch for the neural models. Memory-based learning, which has no maintained Python package, is built from scikit-learn components following Ramirez-Lopez *et al.* (2013). Because every result in the revised manuscript comes from these library implementations, we report the agreement check here rather than in the paper. Under the original protocol, ridge regression reproduced exactly, and random forest and gradient boosting agreed closely (median absolute difference in fold R² of 0.023 and 0.022). PLSR differed (0.147); the check showed that our own PLSR code had computed its coefficients without the weight matrix. This is why all models were moved to library implementations, and the PLSR results in the paper are from scikit-learn.
+**Response:** All models now use maintained libraries: scikit-learn (PLSR, ridge, SVR, KRR, GPR, random forest), LightGBM, the cubist package, and PyTorch for the neural models. Memory-based learning, which has no maintained Python package, is built from scikit-learn components following Ramirez-Lopez *et al.* (2013). Because every result in the revised manuscript comes from these library implementations, we report the agreement check here rather than in the paper. Under the original protocol, ridge regression reproduced exactly, and random forest and gradient boosting agreed closely (median absolute difference in fold R² of [[agree_rf:.3f]] and [[agree_gbm:.3f]]). PLSR differed ([[agree_pls:.3f]]); the check showed that our own PLSR code had computed its coefficients without the weight matrix. This is why all models were moved to library implementations, and the PLSR results in the paper are from scikit-learn.
 
 **2. Calibration breadth (reviewer section 2.2)**
 
@@ -116,11 +116,11 @@ The manuscript states plainly that the architecture does not achieve its design 
 
 **Response:** Both experiments were added (Section 3.5, Table 7, Fig. 7, Table S7).
 
-> \- **Like-for-like comparison.** The test set is always the three Kenyan sites. Mean R² was −0.136 when training on the other two Kenyan sites, 0.101 with a size-matched set drawn from about 13 regional sites, 0.108 with non-Kenyan data only, and 0.230 with Kenyan plus regional data. At constant size, diversity improved 9 of 13 properties.
+> \- **Like-for-like comparison.** The test set is always the three Kenyan sites. Mean R² was [[ken_all_K2:.3f]] when training on the other two Kenyan sites, [[ken_all_K2pEA_n:.3f]] with a size-matched set drawn from about [[ken_sites_K2pEA_n:.0f]] regional sites, [[ken_all_EA:.3f]] with non-Kenyan data only, and [[ken_all_K2pEA:.3f]] with Kenyan plus regional data. At constant size, diversity improved [[ken_n_props_div_beats_k2]] of 13 properties.
 >
-> \- **Learning curves.** n = 100–800 was crossed with m = 2 to all training sites. For kernel ridge regression at n = 200, mean R² rose from 0.04 with two sites to 0.47 with all sites, whereas quadrupling n with all sites added only 0.06.
+> \- **Learning curves.** n = 100–800 was crossed with m = 2 to all training sites. For kernel ridge regression at n = 200, mean R² rose from [[lc_KRR_2_200:.2f]] with two sites to [[lc_KRR_all_200:.2f]] with all sites, whereas quadrupling n with all sites added only [[lc_gain_800:.2f]].
 
-The "order of magnitude" statement was removed. The breadth effect is compared with the full spread among the twelve benchmarks (0.057 under leave-site-out), and the conclusion is stated cautiously.
+The "order of magnitude" statement was removed. The breadth effect is compared with the full spread among the twelve benchmarks ([[spread_nohyb_site:.3f]] under leave-site-out), and the conclusion is stated cautiously.
 
 **3. Boundedness (reviewer section 2.3)**
 
@@ -128,11 +128,11 @@ The "order of magnitude" statement was removed. The breadth effect is compared w
 
 **Response:** We agree. The test is reported in Section 3.4 and Table 6, and the boundedness argument is not made in the revised paper.
 
-> \- The learned ‖w~o~‖₁ had a median of 5.49 (5th–95th percentile 3.23–7.96, maximum 10.7) in standardised units, so the bound is loose.
+> \- The learned ‖w~o~‖₁ had a median of [[wo_l1_median:.2f]] (5th–95th percentile [[wo_l1_p5:.2f]]–[[wo_l1_p95:.2f]], maximum [[wo_l1_max:.1f]]) in standardised units, so the bound is loose.
 >
 > \- Against an otherwise identical linear-head network, worst-case R² was similar on both the original and the log scale, under leave-site-out, leave-AEZ-out and leave-country-out.
 >
-> \- The reviewer's explanation is confirmed. Without a range safeguard, five model–property combinations had R² below −1, all for total S, which is log-modelled and has skewness 13.9. They involved ridge, kernel and GP models and the MLP, and none involved the hybrid.
+> \- The reviewer's explanation is confirmed. Without a range safeguard, [[n_unclipped_lt_m1]] model–property–design combinations had R² below −1, all for total S, which is log-modelled and has skewness 13.9. They involved GPR, kernel ridge regression, the MLP, ridge regression and SVR, and none involved the hybrid.
 >
 > \- Limiting back-transformed predictions to the training range removed these failures. This safeguard is applied identically to all models and is reported in Section 2.8.
 
@@ -144,17 +144,17 @@ The manuscript notes that an RBF head whose units output values near zero return
 
 **Response:** Done (Section 3.8, Fig. 10, Table S5). Agreement of attention with the other measures (Spearman ρ):
 
-> \- integrated gradients: 0.82
+> \- integrated gradients: [[rho_attention_IG:.2f]]
 >
-> \- occlusion: 0.39
+> \- occlusion: [[rho_attention_occlusion:.2f]]
 >
-> \- PLSR VIP: 0.16
+> \- PLSR VIP: [[rho_attention_VIP:.2f]]
 
 A permutation test with circular shifts, which preserves autocorrelation, showed attention enrichment inside literature absorbance windows of 1.6–1.8 times the null for organic C, total N and pH (combined p = 0.02–0.04), although few single-fold tests were significant. Attention is therefore described as a coarse, hypothesis-generating summary (Jain and Wallace, 2019; Wiegreffe and Pinter, 2019).
 
 *Resolution: quoting single wavenumbers overclaims precision.*
 
-**Response:** Agreed. The receptive field of each attended position is reported as about 286–417 cm⁻¹, with positions about 31 cm⁻¹ apart (Section 2.4.1), and attention is described only in terms of broad regions.
+**Response:** Agreed. The receptive field of each attended position is reported as about [[rf_cm:.0f]]–[[rf_max_cm:.0f]] cm⁻¹, with positions about [[jump_cm:.0f]] cm⁻¹ apart (Section 2.4.1), and attention is described only in terms of broad regions.
 
 *Band assignments; 2454 cm⁻¹ is near the CO₂ region; mask atmospheric regions.*
 
@@ -166,7 +166,7 @@ A permutation test with circular shifts, which preserves autocorrelation, showed
 
 *Ancillary branch uses coordinates … do benchmarks receive the same features? "Multi-modal fusion" overstates.*
 
-**Response:** All models receive **identical inputs**: the spectrum plus depth (Section 2.5). Coordinates are excluded from the main analysis because of the extrapolation hazard (Meyer and Pebesma, 2021) and are tested as an ablation; they did not help the hybrid (ΔR² −0.011) or LightGBM (below 0.001 in magnitude). "Multi-modal fusion" was removed from the title, and the text uses "spectral–ancillary fusion".
+**Response:** All models receive **identical inputs**: the spectrum plus depth (Section 2.5). Coordinates are excluded from the main analysis because of the extrapolation hazard (Meyer and Pebesma, 2021) and are tested as an ablation; they did not help the hybrid (ΔR² [[abl_plus_coords:+.3f]]) or LightGBM (below 0.001 in magnitude). "Multi-modal fusion" was removed from the title, and the text uses "spectral–ancillary fusion".
 
 **5. Agronomic section (reviewer section 2.5)**
 
@@ -180,7 +180,7 @@ A permutation test with circular shifts, which preserves autocorrelation, showed
 >
 > \- The fourth research question asks which properties with established interpretive classes can be **screened** in an unsampled landscape.
 >
-> \- Table 10 reports sensitivity, specificity and balanced accuracy for pH, organic C, Olsen P, exchangeable Ca, Mg and K, and eCEC against indicative critical levels (Landon, 1991). Screening was reliable for organic C (balanced accuracy 0.91), pH (0.84) and eCEC (0.83), and close to chance for Olsen P (0.58).
+> \- Table 10 reports sensitivity, specificity and balanced accuracy for pH, organic C, Olsen P, exchangeable Ca, Mg and K, and eCEC against indicative critical levels (Landon, 1991). Screening was reliable for organic C (balanced accuracy [[scr_OrgC_pct_bal_acc:.2f]]), pH ([[scr_pH_bal_acc:.2f]]) and eCEC ([[scr_eCEC_bal_acc:.2f]]), and close to chance for Olsen P ([[scr_P_Olsen_bal_acc:.2f]]).
 
 **6. Statistics and metrics (reviewer section 2.6)**
 
@@ -198,7 +198,7 @@ A permutation test with circular shifts, which preserves autocorrelation, showed
 
 *No significance tests.*
 
-**Response:** Paired group-bootstrap tests for all model pairs, the Friedman test and the Nemenyi critical difference were added (Section 3.2). All eleven other benchmarks were within the critical difference of GPR; only the hybrid fell outside it. No conclusion rests on a single fold.
+**Response:** Paired group-bootstrap tests for all model pairs, the Friedman test and the Nemenyi critical difference were added (Section 3.2). All [[n_within_cd_site_m1]] other benchmarks were within the critical difference of GPR; only the hybrid fell outside it. No conclusion rests on a single fold.
 
 *Folds actually evaluated; Ethiopia never tested; state site grouping.*
 
@@ -216,7 +216,7 @@ A permutation test with circular shifts, which preserves autocorrelation, showed
 
 *Reference precision and attainable R² ceiling for Olsen P.*
 
-**Response:** The deposit does not report replicate precision, so a sensitivity analysis is given (Section 3.9). Even with a 30% relative error plus a 1 mg/kg floor, the attainable R² would be about 0.90, far above what any model achieved. Reference precision alone therefore does not explain the P result.
+**Response:** The deposit does not report replicate precision, so a sensitivity analysis is given (Section 3.9). Even with a 30% relative error plus a 1 mg/kg floor, the attainable R² would be about [[pceil_30_1.0_orig:.2f]], far above what any model achieved. Reference precision alone therefore does not explain the P result.
 
 *Preprocessing choices not explored.*
 
@@ -224,7 +224,7 @@ A permutation test with circular shifts, which preserves autocorrelation, showed
 
 *A random-split reference.*
 
-**Response:** Added as a fifth design (Section 3.1, Table 3, Fig. 3). Moving from random splitting to leave-site-out, leave-AEZ-out and leave-country-out removed 32%, 39% and 41% of the apparent skill. For Olsen P, R² fell from 0.52 under random splitting to at most 0.08 for a new site.
+**Response:** Added as a fifth design (Section 3.1, Table 3, Fig. 3). Moving from random splitting to leave-site-out, leave-AEZ-out and leave-country-out removed [[drop_site_pct:.0f]]%, [[drop_aez_pct:.0f]]% and [[drop_country_pct:.0f]]% of the apparent skill. For Olsen P, R² fell from [[rand_best_P_Olsen:.2f]] under random splitting to at most [[site_best_P_Olsen:.2f]] for a new site.
 
 *Two depths per location — make explicit that grouping handles this.*
 

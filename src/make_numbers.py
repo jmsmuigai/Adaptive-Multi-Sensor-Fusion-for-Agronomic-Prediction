@@ -160,16 +160,18 @@ def main():
             for n in [100, 200, 400, 800]:
                 if (mod, m, n) in G.index:
                     N[f'lc_{mod}_{m}_{n}'] = G[(mod, m, n)]
+    N['lc_gain_800'] = N['lc_KRR_all_800'] - N['lc_KRR_all_200']
     Sp = pd.read_csv(os.path.join(T, 'spiking.csv'))
     Sm = Sp.groupby(['model', 'k']).R2.mean()
     for (m, k), v in Sm.items():
         N[f'sp_{m}_{k}'] = v
-    for t in ['P_Olsen', 'K_exch', 'pH', 'OrgC_pct']:
-        for m in ['KRR', 'PLSR', 'LightGBM', 'Hybrid']:
-            for k in [0, 50]:
-                r = Sp[(Sp.target == t) & (Sp.model == m) & (Sp.k == k)]
-                if len(r):
-                    N[f'sp_{m}_{t}_{k}'] = r.R2.iloc[0]
+    St = Sp.groupby(['model', 'target', 'k']).R2.mean()
+    for (m, t, k), v in St.items():
+        N[f'sp_{m}_{t}_{k}'] = v
+    for m in ['KRR', 'PLSR', 'LightGBM', 'Hybrid']:
+        d = St.loc[m].unstack('k')
+        N[f'sp_{m}_nimp50'] = int((d[50] > d[0]).sum())
+        N[f'sp_{m}_nimp20'] = int((d[20] > d[0]).sum())
     Cf = pd.read_csv(os.path.join(T, 'conformal.csv'))
     for _, r in Cf.iterrows():
         N[f'cf_{r.design}_{r.model}_{r.cal}'] = r.coverage
