@@ -1,8 +1,12 @@
 **Cover Letter and Point-by-Point Response to the Reviewer**
 
-**Manuscript:** "Adaptive Multi-Modal Fusion for Agronomic Prediction: An Attention-Weighted Hybrid CNN–RBF Model for Soil Nutrient Prediction Across East African Agro-Ecological Zones"
+**Manuscript ID:** 1283
 
-**Revised title:** "Does Architectural Complexity Pay Off Under Spatial Transfer? Ablation, Uncertainty and Nested Validation of an Attention-Weighted Hybrid CNN–RBF Model for Mid-Infrared Soil Nutrient Prediction in East Africa"
+**Original title:** "Adaptive Multi-Modal Fusion for Agronomic Prediction: An Attention-Weighted Hybrid CNN–RBF Model for Soil Nutrient Prediction Across East African Agro-Ecological Zones"
+
+**Revised title:** "Comparison of a Hybrid Deep Learning Model with Machine Learning Methods for Mid-Infrared Soil Nutrient Prediction under Spatial Transfer in East Africa"
+
+**Running title:** Spectral soil nutrient prediction under spatial transfer
 
 **Journal:** Journal of Agriculture, Science and Technology (JAGST) — Decision: Revisions Required
 
@@ -29,6 +33,24 @@ The main consequences for the paper are:
 > 1\. The proposed hybrid does **not** outperform the benchmarks. It ranked last in every design. The ablation shows that its RBF head and modality gate add no skill. We now say this plainly and have changed the title and framing accordingly.
 >
 > 2\. The paper's contribution is the evaluation itself: nested group-disjoint validation across five spatial scales, ablation, multi-seed training, group-bootstrap inference, a like-for-like test of calibration breadth, local spiking, group-aware conformal intervals and validated interpretability. These give clear, practically useful conclusions for soil spectral libraries in East Africa.
+
+**Summary of the seven experiments requested by the reviewer**
+
+| No. | Reviewer request | What we did | Main result | Where |
+|---|---|---|---|---|
+| 1 | Local spiking, k = 0, 5, 10, 20, 50 | Added k samples from the held-out site to training, under leave-site-out; profile partners of spiked samples removed from the test set | Mean R² of kernel ridge regression rose from 0.512 (k = 0) to 0.658 (k = 50); Olsen P stayed near 0.06 | Section 3.6, Table 8, Fig. 8 |
+| 2 | Learning curve over samples and sites | Crossed training size n = 100–800 with the number of training sites m = 2 to all; plus a like-for-like Kenya test | At n = 200, R² rose from 0.04 (2 sites) to 0.47 (all sites); quadrupling n added only 0.06 | Section 3.5, Table 7, Fig. 7, Table S8 |
+| 3 | Ablation table | Nine single-component replacements of the hybrid under leave-site-out, all 13 properties | RBF head and gate gave no benefit; positional information and attention pooling were essential | Section 3.3, Table 5, Fig. 6 |
+| 4 | Direct boundedness test, ‖W~o~‖₁, log and original scales | Hybrid compared with an otherwise identical linear-head network; ‖w~o~‖₁ reported | Median ‖w~o~‖₁ 5.49 (loose bound); worst-case R² similar on both scales; boundedness claim withdrawn | Section 3.4, Table 6 |
+| 5 | Group-bootstrap CIs and paired tests | 2,000-draw group bootstrap over spatial units; paired tests for all model pairs; Friedman and Nemenyi tests | GPR ranked first; eleven benchmarks within the critical difference; the hybrid outside it | Sections 2.8 and 3.2, Table 4, Table S3 |
+| 6 | 5–10 seeds for all neural models | Five seeds (11, 22, 33, 44, 55) for the MLP, CNN, multi-output CNN and hybrid in every fold | Hybrid had the largest seed variability (SD of R² 0.041) | Section 2.6 |
+| 7 | Leave-AEZ-out and group-aware conformal prediction | Five Köppen–Geiger zones withheld in turn; split conformal intervals with a group-aware calibration set | Coverage of nominal 90% intervals 84.5% (site), 85.4% (AEZ), 80.5% (country), against 71.7–78.5% with random calibration | Sections 2.1 and 3.7, Tables 3 and 9, Fig. 9 |
+
+**Changes to the title and format**
+
+The title has been changed to "Comparison of a Hybrid Deep Learning Model with Machine Learning Methods for Mid-Infrared Soil Nutrient Prediction under Spatial Transfer in East Africa". The original title promised an adaptive multi-modal model that improves prediction; the re-analysis does not support either claim, and the reviewer noted that "multi-modal fusion" overstated the inputs. The new title follows the descriptive style of comparison studies published in JAGST, states the main comparison and the validation setting, and avoids undefined abbreviations. The running title (seven words) is "Spectral soil nutrient prediction under spatial transfer".
+
+The manuscript now follows the JAGST Author Guidelines and submission checklist: Calibri 11 pt, single line spacing, an abstract of fewer than 300 words with every abbreviation defined, a running title at the foot of the title page, Harvard in-text citations with multiple citations in alphabetical order separated by semicolons, an alphabetical reference list starting on a new page with a link (DOI or URL) for every reference, tables and figures placed in the text where they are first discussed, metric units, and an Ethical Statement (Section 6.0). The text has been checked for originality: it was written afresh for this revision, and quotations from other works are not used.
 
 We hope the revised manuscript now meets the standard of JAGST. We would be glad to make any further changes.
 

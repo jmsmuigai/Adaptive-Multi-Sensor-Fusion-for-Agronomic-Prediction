@@ -1,6 +1,6 @@
 **Supplementary Material**
 
-**Does Architectural Complexity Pay Off Under Spatial Transfer? Ablation, Uncertainty and Nested Validation of an Attention-Weighted Hybrid CNN–RBF Model for Mid-Infrared Soil Nutrient Prediction in East Africa**
+**Comparison of a Hybrid Deep Learning Model with Machine Learning Methods for Mid-Infrared Soil Nutrient Prediction under Spatial Transfer in East Africa**
 
 Table S1: Composition of the outer folds of each validation design. Site names are followed by country and sample count.
 

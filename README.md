@@ -1,6 +1,8 @@
 # Attention-Weighted Hybrid CNN–RBF Model for MIR Soil Nutrient Prediction — Revision 2
 
-**Does Architectural Complexity Pay Off Under Spatial Transfer? Ablation, Uncertainty and Nested Validation of an Attention-Weighted Hybrid CNN–RBF Model for Mid-Infrared Soil Nutrient Prediction in East Africa**
+**Comparison of a Hybrid Deep Learning Model with Machine Learning Methods for Mid-Infrared Soil Nutrient Prediction under Spatial Transfer in East Africa**
+
+Running title: *Spectral soil nutrient prediction under spatial transfer*
 
 Reproducibility package for the JAGST manuscript (ID 1283), revised in response to the reviewer's report (round 2, October 2026).
 
@@ -74,7 +76,7 @@ round1_archive/ superseded round-1 code and outputs
    for e in agreement exp_prep exp_lc exp_spike exp_kenya exp_conformal exp_interp; do python3 jobrun.py $e 4; done
    ```
    About 85,000 model fits in total. To skip this step, unpack the two archives in `results/` into `src/out/` instead.
-4. Rebuild every number, table, figure and Word document: `bash make_docs.sh`. `verify.py` recomputes the headline numbers independently from the raw records.
+4. Rebuild every number, table, figure and Word document: `bash make_docs.sh`. The four JAGST submission files (Calibri 11 pt, single spacing, light figures) are built with `cd src/ms && FIGDIR=fig_final python3 make_final.py`. `verify.py` recomputes the headline numbers independently from the raw records.
 
 Seeds: fold assignment 20260804; neural seeds 11, 22, 33, 44, 55.
 

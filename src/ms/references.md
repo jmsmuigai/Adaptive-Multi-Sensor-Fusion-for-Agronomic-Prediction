@@ -28,7 +28,7 @@ Kingma, D. P. and Ba, J. (2015). Adam: a method for stochastic optimization. *Pr
 
 Kottek, M., Grieser, J., Beck, C., Rudolf, B. and Rubel, F. (2006). World map of the Köppen–Geiger climate classification updated. *Meteorologische Zeitschrift*, **15**(3), pp. 259–263. https://doi.org/10.1127/0941-2948/2006/0130
 
-Landon, J. R. (ed.) (1991). *Booker Tropical Soil Manual: A Handbook for Soil Survey and Agricultural Land Evaluation in the Tropics and Subtropics*. Longman Scientific and Technical, Harlow.
+Landon, J. R. (ed.) (1991). *Booker Tropical Soil Manual: A Handbook for Soil Survey and Agricultural Land Evaluation in the Tropics and Subtropics*. Longman Scientific and Technical, Harlow. https://www.routledge.com/products/9780582005570
 
 Lin, L. I.-K. (1989). A concordance correlation coefficient to evaluate reproducibility. *Biometrics*, **45**(1), pp. 255–268. https://doi.org/10.2307/2532051
 

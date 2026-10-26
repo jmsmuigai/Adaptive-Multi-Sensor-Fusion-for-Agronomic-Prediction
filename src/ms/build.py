@@ -23,7 +23,7 @@ from docx.shared import Pt, Cm
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 OUT = os.path.join(ROOT, 'out')
-FIG = os.path.join(OUT, 'fig')
+FIG = os.path.join(OUT, os.environ.get('FIGDIR', 'fig'))
 MT = os.path.join(OUT, 'ms_tables')
 DOCS = os.path.join(OUT, 'docs'); os.makedirs(DOCS, exist_ok=True)
 N = json.load(open(os.path.join(OUT, 'numbers.json')))
@@ -107,7 +107,7 @@ def postprocess(path, line_numbers=True, landscape=False):
                     head[j] = max((len(w) for w in txt.split()), default=1)
                 else:
                     body[j] = max(body[j], min(len(txt), 40))
-        wts = [max(b, min(h, 9), 5) + 4 for b, h in zip(body, head)]
+        wts = [max(b, min(h, 11), 5) + 4 for b, h in zip(body, head)]
         widths = [int(TW * w / sum(wts)) for w in wts]
         for old in tblPr.findall(qn('w:tblW')):
             tblPr.remove(old)
@@ -130,6 +130,16 @@ def postprocess(path, line_numbers=True, landscape=False):
                     tcPr.remove(old)
                 cw = OxmlElement('w:tcW'); cw.set(qn('w:w'), str(w)); cw.set(qn('w:type'), 'dxa'); tcPr.insert(0, cw)
         set_cell_borders(t)
+        nrows = len(t.rows)
+        for i, row in enumerate(t.rows):
+            trPr = row._tr.get_or_add_trPr()
+            cs = OxmlElement('w:cantSplit'); trPr.append(cs)
+            if i == 0:
+                th = OxmlElement('w:tblHeader'); trPr.append(th)
+            if nrows <= 30 and i < nrows - 1:
+                for c in row.cells:
+                    for p in c.paragraphs:
+                        p.paragraph_format.keep_with_next = True
         for i, row in enumerate(t.rows):
             for c in row.cells:
                 for p in c.paragraphs:
@@ -216,6 +226,45 @@ def postprocess(path, line_numbers=True, landscape=False):
             e = OxmlElement('w:fldChar'); e.set(qn('w:fldCharType'), tag); r._r.append(e)
         else:
             e = OxmlElement('w:instrText'); e.set(qn('xml:space'), 'preserve'); e.text = txt; r._r.append(e)
+    d.save(path)
+
+
+def finalise(path, running_title, refs_heading='8.0 References'):
+    """Submission copy (JAGST checklist): Calibri 11 pt, single spacing, 6 pt after paragraphs,
+    justified body text, hanging-indent references, running title in the page header."""
+    d = Document(path)
+    in_refs = False
+    for p in d.paragraphs:
+        txt = p.text.strip()
+        if refs_heading and txt.startswith(refs_heading):
+            in_refs = True
+            continue
+        if not txt or re.match(r'^(Table S?\d+:|Fig\. \d+\.)', txt):
+            continue
+        if p.alignment == WD_ALIGN_PARAGRAPH.CENTER:
+            continue
+        pf = p.paragraph_format
+        pf.line_spacing_rule = WD_LINE_SPACING.SINGLE
+        pf.space_after = Pt(6)
+        if in_refs:
+            pf.left_indent = Cm(0.75); pf.first_line_indent = Cm(-0.75)
+            p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        elif not (p.runs and all(r.bold for r in p.runs if r.text.strip())):
+            p.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
+        if p.runs and all(r.bold for r in p.runs if r.text.strip()) and len(txt) < 120:
+            pf.keep_with_next = True
+    for t in d.tables:
+        for row in t.rows:
+            for c in row.cells:
+                for p in c.paragraphs:
+                    for r in p.runs:
+                        r.font.size = Pt(9)
+    sec = d.sections[0]
+    if running_title:
+        hp = sec.header.paragraphs[0]
+        hp.text = ''
+        r = hp.add_run(running_title); r.italic = True; r.font.size = Pt(9)
+        hp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     d.save(path)
 
 
