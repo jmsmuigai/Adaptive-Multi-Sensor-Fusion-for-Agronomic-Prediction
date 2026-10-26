@@ -121,37 +121,19 @@ Table S3: Pooled out-of-fold R² for every model, property and validation design
 | country | Total Cu | 0.31 | 0.32 | 0.34 | 0.35 | 0.39 | 0.39 | 0.36 | 0.28 | 0.22 | 0.14 | 0.14 | 0.19 | −0.13 |
 
 
-Table S4: Agreement between the round-one NumPy implementations and scikit-learn re-implementations run under the identical round-one protocol (round-one preprocessing, same three configurations, fold 0 for selection, folds 1 to k−1 evaluated, spectra only). Fold R² values below −3 were truncated at −3 for the means and correlation.
-
-| Design | Model | Fold × property pairs | Mean fold R² (round-1 NumPy) | Mean fold R² (library) | Median |difference| | Correlation |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| cluster | GradientBoosting | 52 | 0.732 | 0.731 | 0.013 | 0.99 |
-| cluster | PLSR | 52 | 0.539 | 0.636 | 0.079 | 0.45 |
-| cluster | RandomForest | 52 | 0.695 | 0.695 | 0.009 | 0.99 |
-| cluster | Ridge | 52 | 0.685 | 0.685 | 0.000 | 1.00 |
-| country | GradientBoosting | 39 | 0.205 | 0.213 | 0.037 | 0.99 |
-| country | PLSR | 39 | −0.311 | −0.236 | 0.301 | 0.74 |
-| country | RandomForest | 39 | 0.171 | 0.187 | 0.041 | 0.98 |
-| country | Ridge | 39 | 0.042 | 0.042 | 0.000 | 1.00 |
-| site | GradientBoosting | 91 | 0.351 | 0.325 | 0.027 | 0.97 |
-| site | PLSR | 91 | −0.037 | 0.193 | 0.177 | 0.73 |
-| site | RandomForest | 91 | 0.306 | 0.290 | 0.033 | 0.98 |
-| site | Ridge | 91 | 0.180 | 0.180 | 0.000 | 1.00 |
-
-
-Table S5: Sensitivity of mean leave-site-out pooled R² (13 properties) to spectral preprocessing, with nested tuning as in the main analysis.
+Table S4: Sensitivity of mean leave-site-out pooled R² (13 properties) to spectral preprocessing, with nested tuning as in the main analysis.
 
 | Preprocessing | KRR | PLSR |
 | --- | ---: | ---: |
 | SG1+SNV, CO2 masked (adopted) | 0.520 | 0.492 |
 | SG1+SNV, masked, bin x8 | 0.526 | 0.496 |
-| SG1+SNV, unmasked (round 1) | 0.528 | 0.495 |
+| SG1+SNV, unmasked | 0.528 | 0.495 |
 | SG2+SNV, masked | 0.474 | 0.372 |
 | SNV only, masked | 0.558 | 0.424 |
 | SNV then SG1, masked | 0.528 | 0.459 |
 
 
-Table S6: Mean Spearman correlation between importance profiles of the leave-site-out hybrid models (eight folds): DAFM attention spread over receptive fields, occlusion, integrated gradients (IG) and PLSR variable importance in projection (VIP).
+Table S5: Mean Spearman correlation between importance profiles of the leave-site-out hybrid models (eight folds): DAFM attention spread over receptive fields, occlusion, integrated gradients (IG) and PLSR variable importance in projection (VIP).
 
 | Property | Attention–occlusion | Attention–IG | Attention–VIP | Occlusion–IG | Occlusion–VIP | IG–VIP |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -170,7 +152,7 @@ Table S6: Mean Spearman correlation between importance profiles of the leave-sit
 | pH | 0.44 | 0.83 | 0.21 | 0.47 | 0.20 | 0.26 |
 
 
-Table S7: Coverage of group-calibrated split-conformal 90% intervals by property, design and model.
+Table S6: Coverage of group-calibrated split-conformal 90% intervals by property, design and model.
 
 | Property | aez–Hybrid | aez–KRR | aez–LightGBM | coun–Hybrid | coun–KRR | coun–LightGBM | site–Hybrid | site–KRR | site–LightGBM |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -189,7 +171,7 @@ Table S7: Coverage of group-calibrated split-conformal 90% intervals by property
 | pH | 0.91 | 0.92 | 0.88 | 0.72 | 0.80 | 0.81 | 0.87 | 0.84 | 0.87 |
 
 
-Table S8: Learning curves: mean pooled leave-site-out R² (13 properties) for training sets of n samples drawn from m training sites (three draws). "all" denotes all training sites with at least 20 samples (11–13 sites, depending on the fold).
+Table S7: Learning curves: mean pooled leave-site-out R² (13 properties) for training sets of n samples drawn from m training sites (three draws). "all" denotes all training sites with at least 20 samples (11–13 sites, depending on the fold).
 
 | Model | Training sites | n = 100 | n = 200 | n = 400 | n = 800 |
 | --- | ---: | ---: | ---: | ---: | ---: |

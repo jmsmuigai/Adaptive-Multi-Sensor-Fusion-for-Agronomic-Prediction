@@ -128,7 +128,7 @@ plt.tight_layout(); save('Figure_5_obs_pred.png')
 # ---------------------------------------------------------------- Fig 6 ablation
 D = pd.read_csv(os.path.join(T, 'ablation.csv'))
 D = D[(D.design == 'site') & (D.clipped)]
-lab = {'head_linear': 'Linear head', 'head_mlp': 'Dense (ReLU) head', 'head_gauss': 'Round-1 Gaussian head',
+lab = {'head_linear': 'Linear head', 'head_mlp': 'Dense (ReLU) head', 'head_gauss': 'Fixed-centre Gaussian head',
        'pool_mean': 'Mean pooling', 'pool_reweight': 'Attention re-weighting', 'no_pos': 'No positional embedding',
        'fuse_concat': 'Concatenation, no gate', 'spectra_only': 'Spectra only (no depth)',
        'plus_coords': '+ latitude/longitude'}

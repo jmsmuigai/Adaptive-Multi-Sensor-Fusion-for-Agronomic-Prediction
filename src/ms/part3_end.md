@@ -1,8 +1,8 @@
 **4.0 Conclusion**
 
-This study evaluated an attention-weighted hybrid CNN–RBF model for MIR soil nutrient prediction against twelve library-implemented benchmarks. The evaluation used 1,310 AfSIS samples from 16 sentinel sites in four East African countries, five nested validation designs, nested group-aware tuning, five random initialisations per neural model, and group-bootstrap inference.
+This study evaluated an attention-weighted hybrid CNN–RBF model for MIR soil nutrient prediction against twelve established machine learning benchmarks. The evaluation used 1,310 AfSIS samples from 16 sentinel sites in four East African countries, five nested validation designs, nested group-aware tuning, five random initialisations per neural model, and group-bootstrap inference.
 
-The proposed architecture did not achieve its design objective. It ranked last in every validation design. Ablation showed that the components that motivated it, the RBF head and the modality gate, added no skill, and that the RBF head's bounded output did not reduce worst-case errors. The parts that mattered were generic: positional information and position-aware pooling of convolutional features. The extreme failures previously attributed to unbounded models arose from back-transforming log-modelled targets and disappeared when predictions were limited to the training range.
+The proposed architecture did not achieve its design objective. It ranked last in every validation design. Ablation showed that the components that motivated it, the RBF head and the modality gate, added no skill, and that the RBF head's bounded output did not reduce worst-case errors. The parts that mattered were generic: positional information and position-aware pooling of convolutional features. The extreme failures that did occur arose from back-transforming log-modelled targets, affected unbounded and bounded models alike, and disappeared when predictions were limited to the training range.
 
 The wider findings are of more practical consequence. First, validation design dominated every comparison: moving from random splitting to a new site, climatic zone or country removed about a third to two-fifths of the apparent skill, so any accuracy reported for a soil spectral library must state the spatial unit that was withheld. Second, well-tuned conventional learners were statistically close; GPR ranked first under all transfer designs but was distinguishable from few alternatives. Third, calibration diversity mattered more than calibration size: at a fixed size, more sites gave better transfer, and 20–50 local samples recovered a substantial part of the lost skill. Fourth, group-aware conformal calibration substantially improved interval coverage under transfer, although coverage remained below nominal for unseen countries.
 
@@ -10,7 +10,7 @@ Organic C, pH, total N and effective CEC can be predicted in unsampled East Afri
 
 **5.0 Acknowledgements**
 
-[Removed for blind review.] We acknowledge World Agroforestry (ICRAF), Rothamsted Research and the Africa Soil Information Service for making the soil spectral and wet-chemistry data openly available, and the Bill & Melinda Gates Foundation, which funded AfSIS Phase I. We thank the reviewer of the previous version, whose detailed and constructive report led to the re-analysis presented here.
+[Removed for blind review.] We acknowledge World Agroforestry (ICRAF), Rothamsted Research and the Africa Soil Information Service for making the soil spectral and wet-chemistry data openly available, and the Bill & Melinda Gates Foundation, which funded AfSIS Phase I. We thank the anonymous reviewer for detailed and constructive comments.
 
 **6.0 Ethical Statement**
 
@@ -18,7 +18,7 @@ This study used secondary, anonymised soil measurement data obtained from open-a
 
 **7.0 Data and Code Availability**
 
-Both source datasets are openly licensed and are cited with persistent identifiers (Vågen *et al.*, 2020, 2021). The complete revised pipeline will be released in a public repository on acceptance; the link is withheld here for blind review and has been provided to the editor. The pipeline comprises dataset assembly, preprocessing, all model implementations, fold definitions, the nested tuning and seed protocol, every additional experiment, and a single script that regenerates every table, figure and number in this manuscript from the stored per-fit records. Fold assignments, selected configurations, per-seed out-of-fold predictions and the library-agreement records are included.
+Both source datasets are openly licensed and are cited with persistent identifiers (Vågen *et al.*, 2020, 2021). The complete pipeline will be released in a public repository on acceptance; the link is withheld here for blind review and is available to the editor on request. The pipeline comprises dataset assembly, preprocessing, all model implementations, fold definitions, the nested tuning and seed protocol, every additional experiment, and a single script that regenerates every table, figure and number in this manuscript from the stored per-fit records. Fold assignments, selected configurations, per-seed out-of-fold predictions and the library-agreement records are included.
 
 ```{=openxml}
 <w:p><w:r><w:br w:type="page"/></w:r></w:p>

@@ -37,7 +37,8 @@ def md(df):
 
 
 def save(name, df):
-    open(os.path.join(MT, name + '.md'), 'w').write(md(df))
+    txt = md(df).replace(' (round 1)', '').replace('round-1 Gaussian activation', 'fixed-centre Gaussian activation')
+    open(os.path.join(MT, name + '.md'), 'w').write(txt)
 
 
 def main():
@@ -104,7 +105,7 @@ def main():
     # Table 5 ablation
     D = pd.read_csv(os.path.join(T, 'ablation.csv')); D = D[(D.design == 'site') & D.clipped]
     lab = [('head_linear', 'Head', 'RBF head → linear output'), ('head_mlp', 'Head', 'RBF head → dense ReLU layer'),
-           ('head_gauss', 'Head', 'RBF head → round-1 Gaussian activation'),
+           ('head_gauss', 'Head', 'RBF head → fixed-centre Gaussian activation'),
            ('pool_mean', 'Pooling', 'Attention pooling → mean pooling'),
            ('pool_reweight', 'Pooling', 'Attention pooling → attention re-weighting + flatten'),
            ('no_pos', 'Pooling', 'Positional embedding removed'),

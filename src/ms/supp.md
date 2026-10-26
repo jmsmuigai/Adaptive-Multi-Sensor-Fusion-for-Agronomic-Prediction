@@ -14,22 +14,18 @@ Table S3: Pooled out-of-fold R² for every model, property and validation design
 
 [[TABLE:S3]]
 
-Table S4: Agreement between the round-one NumPy implementations and scikit-learn re-implementations run under the identical round-one protocol (round-one preprocessing, same three configurations, fold 0 for selection, folds 1 to k−1 evaluated, spectra only). Fold R² values below −3 were truncated at −3 for the means and correlation.
-
-[[TABLE:S4]]
-
-Table S5: Sensitivity of mean leave-site-out pooled R² (13 properties) to spectral preprocessing, with nested tuning as in the main analysis.
+Table S4: Sensitivity of mean leave-site-out pooled R² (13 properties) to spectral preprocessing, with nested tuning as in the main analysis.
 
 [[TABLE:S5]]
 
-Table S6: Mean Spearman correlation between importance profiles of the leave-site-out hybrid models (eight folds): DAFM attention spread over receptive fields, occlusion, integrated gradients (IG) and PLSR variable importance in projection (VIP).
+Table S5: Mean Spearman correlation between importance profiles of the leave-site-out hybrid models (eight folds): DAFM attention spread over receptive fields, occlusion, integrated gradients (IG) and PLSR variable importance in projection (VIP).
 
 [[TABLE:S6]]
 
-Table S7: Coverage of group-calibrated split-conformal 90% intervals by property, design and model.
+Table S6: Coverage of group-calibrated split-conformal 90% intervals by property, design and model.
 
 [[TABLE:S7]]
 
-Table S8: Learning curves: mean pooled leave-site-out R² (13 properties) for training sets of n samples drawn from m training sites (three draws). "all" denotes all training sites with at least 20 samples (11–13 sites, depending on the fold).
+Table S7: Learning curves: mean pooled leave-site-out R² (13 properties) for training sets of n samples drawn from m training sites (three draws). "all" denotes all training sites with at least 20 samples (11–13 sites, depending on the fold).
 
 [[TABLE:S8]]
