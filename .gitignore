@@ -1,5 +1,5 @@
+src/data/
+src/out/
 __pycache__/
 *.pyc
-Data/
-*.tab
-.ipynb_checkpoints/
+.DS_Store
